@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LIC_CMS.Areas.Admin.Models.TermModel>
+
+<table id="table_data" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            @*<th>Term Id</th>*@
+            <th>Term Name</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>@item.TERM_ID</td>*@
+                <td>@item.TERM_NAME</td>
+                <td><a><span onclick="fillEditForm(@item.TERM_ID)" data-toggle="modal" data-target="#myTermModal" class="glyphicon glyphicon-edit cursorPointer"></span></a></td>
+                @*<td>@Html.ActionLink("Delete", "Delete", new { id = item.TERM_ID }, new { onclick = "return confirm('Are you delete this Term?')" })</td>*@
+                <td><a href="Delete/@item.TERM_ID"><span class="glyphicon glyphicon-trash"></span></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Content/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/datatables/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table_data').DataTable({
+            responsive: true
+        });
+    });
+</script>
+
+
+

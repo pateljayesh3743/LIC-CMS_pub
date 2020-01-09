@@ -1,0 +1,9 @@
+=>User profile detail not update
+
+ADMIN SIDE
+==========
+=>State Master edit function 
+=>City Master edit function
+=>Add ADD,Edit and Delete Icon
+=>All popup change sweet alert.
+=>

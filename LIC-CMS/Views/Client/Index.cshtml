@@ -1,0 +1,658 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .modal-dialog {
+        width: 917px;
+        margin: 30px auto;
+    }
+
+    .modal-content {
+        min-height: 391px;
+    }
+</style>
+
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Client List</h4>
+    </div>
+</div>
+
+<div><button type="button" class="btn btn-info load-model" data-toggle="modal" data-target="#myClientModal">Create Client</button></div>
+<div style="margin-top:17px">
+    <div id="Data-Block">
+    </div>
+</div>
+
+
+
+@model LIC_CMS.Models.ClientAssuranceModel
+
+<div id="myClientModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h4 class="modal-title label-english">Create Country</h4>
+                </div>*@
+            <div class="modal-body form-horizontal">
+
+
+                <ul class="nav nav-tabs">
+                    <li id="abc" class="active"><a data-toggle="tab" href="#home"><i class="fa fa-user"></i>  Client Profile</a></li>
+                    <li id="asd"><a data-toggle="tab" href="#menu" id="menu11"><i class="fa fa-asterisk"></i>  Client Detail</a></li>
+                    <li id="lkj"><a data-toggle="tab" href="#menu1"><i class="fa fa-envelope"></i>  Assurance Detail</a></li>
+                </ul>
+
+                <div class="tab-content">
+
+
+                    <div id="home" class="tab-pane fade in active" style=" margin-top: 3%;">
+                        @using (Html.BeginForm("Create", "Client", FormMethod.Post, new { @id = "home1" }))
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.HiddenFor(x => x.CLIENT_ID)
+                                        @Html.LabelFor(x => x.FIRST_NAME, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.FIRST_NAME, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.FIRST_NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.MIDDLE_NAME, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.MIDDLE_NAME, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.MIDDLE_NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.LAST_NAME, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.LAST_NAME, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.LAST_NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.PIN_CODE, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.PIN_CODE, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.PIN_CODE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.AADDRESS, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextAreaFor(x => x.AADDRESS, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.COUNTRY_ID, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(x => x.COUNTRY_ID, LIC_CMS.Areas.Admin.Models.StateModel.countrylist(), "-Select Country-", new { @onchange = "FillState()", @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.COUNTRY_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.STATE_ID, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select id='STATE_ID' name="STATE_ID" class="form-control" onchange="FillCity()">
+                                            <option>-Select State-</option>
+                                        </select>
+                                        @Html.ValidationMessageFor(x => x.STATE_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.CITY_ID, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select id='CITY_ID' name="CITY_ID" class="form-control">
+                                            <option>-Select City-</option>
+                                        </select>
+                                        @Html.ValidationMessageFor(x => x.CITY_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <a data-toggle="tab" id="next" class="btn btn-info">Next</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+                    <div id="menu" class="tab-pane fade" style=" margin-top: 3%;">
+                        @using (Html.BeginForm("Create", "Client", FormMethod.Post, new { @id = "formmenu" }))
+                        {
+                            <div class="col-md-6">
+
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.DOB, new { @class = "control-lable" })
+                                        @*<label class="control-lable">DOB</label>*@
+                                    </div>
+                                    <div class="col-md-8">
+                                        @*@Html.TextBoxFor(x => x.DOB, new { @class = "form-control" })*@
+                                        <div class='input-group date' id='DOB1'>
+                                            <input type='text' class="form-control" id="DOB" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(x => x.DOB, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.AGE, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.AGE, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.AGE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.MOBILE, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.MOBILE, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.EMAIL, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.EMAIL, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.WEIGHT, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.WEIGHT, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.HEIGHT, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.HEIGHT, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.IDENTITY_OF_BODY, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.IDENTITY_OF_BODY, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.IDENTITY_OF_BODY, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.DOS, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @*@Html.TextBoxFor(x => x.DOS, new { @class = "form-control" })*@
+                                        <div class='input-group date' id='DOS1'>
+                                            <input type='text' class="form-control" id="DOS" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(x => x.DOS, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-8">
+                                        <a data-toggle="tab" href="#home" onclick="previousclick1()" class="btn btn-info">Previous</a>
+                                        <a id="nextclick1" class="btn btn-info">Next</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+
+
+                    <div id="menu1" class="tab-pane fade" style=" margin-top: 3%;">
+                        @using (Html.BeginForm("Create", "Client", FormMethod.Post, new { @id = "formmenuassu" }))
+                        {
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.HiddenFor(x => x.CLIENTASSURANCE_ID)
+                                        @Html.LabelFor(x => x.PREMIUM, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.PREMIUM, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.PREMIUM, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.MODE_ID, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(x => x.MODE_ID, LIC_CMS.Models.ClientAssuranceModel.FillModeDropDown(), "-Select Mode-", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.MODE_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.TERM_ID, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(x => x.TERM_ID, LIC_CMS.Models.ClientAssuranceModel.FillTermDropDown(), "-Select Term-", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.TERM_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.PLAN_ID, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(x => x.PLAN_ID, LIC_CMS.Models.ClientAssuranceModel.FillPlanDropDown(), "-Select Plan-", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.PLAN_ID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.SUM_OF_ASSURANCE, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.SUM_OF_ASSURANCE, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.SUM_OF_ASSURANCE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.DATE_OF_MATURITY, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @*@Html.TextBoxFor(x => x.DATE_OF_MATURITY, new { @class = "form-control" })*@
+
+
+                                        <div class='input-group date' id='DATE_OF_MATURITY1'>
+                                            <input type='text' class="form-control" id="DATE_OF_MATURITY" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                        @Html.ValidationMessageFor(x => x.DATE_OF_MATURITY, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.POLICY_NUMBER, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.POLICY_NUMBER, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.POLICY_NUMBER, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(x => x.NOMINEE, new { @class = "control-lable" })
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.TextBoxFor(x => x.NOMINEE, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-8">
+                                        <a data-toggle="tab" href="#menu" onclick="previousclick()" class="btn btn-info">Previous</a>
+                                        <input type="button" class="btn btn-info" value="Submit" id="addclient" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#DATE_OF_MATURITY1').datetimepicker();
+        $('#DOS1').datetimepicker();
+        $('#DOB1').datetimepicker();
+    });
+    //function nextclick() {
+
+
+    //        $("#abc").removeClass("active");
+    //        $("#asd").addClass("active");
+
+    //}
+
+
+    $("#next").click(function (ev) {
+        ev.preventDefault();
+        if ($("#home1").valid()) {
+            $("#home").removeClass("active");
+            $("#home").removeClass("in");
+            $("#menu").addClass("active");
+            $("#menu").addClass("in");
+            $("#abc").removeClass("active");
+            $("#asd").addClass("active");
+        }
+    });
+    $("#nextclick1").click(function (eu) {
+        eu.preventDefault();
+        if ($("#formmenu").valid()) {
+
+            $("#menu").removeClass("active");
+            $("#menu").removeClass("in");
+            $("#menu1").addClass("active");
+            $("#menu1").addClass("in");
+            $("#asd").removeClass("active");
+            $("#lkj").addClass("active");
+        }
+    });
+    $("#addclient").click(function (ek) {
+        ek.preventDefault();
+        if ($("#formmenuassu").valid()) {
+            addClient();
+        }
+    });
+
+    function previousclick() {
+        $("#lkj").removeClass("active");
+        $("#asd").addClass("active");
+    }
+    function previousclick1() {
+        $("#asd").removeClass("active");
+        $("#abc").addClass("active");
+    }
+
+    $(document).ready(function () {
+        loadContent();
+    });
+
+    function loadContent() {
+        $.ajax({
+            url: '@Url.Action("Gird", "Client")',
+            type: 'GET',
+            success: function (d) {
+                $("#Data-Block").append(d);
+            }
+        })
+    }
+
+
+
+    function addClient() {
+
+        var Data = {};
+
+        Data.CLIENT_ID = $("#CLIENT_ID").val();
+        Data.CLIENTASSURANCE_ID = $("#CLIENTASSURANCE_ID").val();
+
+        if (Data.CLIENT_ID == '' && Data.CLIENTASSURANCE_ID == '') {
+            Data.CLIENT_ID = 0;
+            Data.CLIENTASSURANCE_ID = 0;
+        }
+
+        Data.FIRST_NAME = $("#FIRST_NAME").val();
+        Data.LAST_NAME = $("#LAST_NAME").val();
+        Data.MIDDLE_NAME = $("#MIDDLE_NAME").val();
+        Data.DOB = $("#DOB").val();
+        Data.AGE = $("#AGE").val();
+        Data.MOBILE = $("#MOBILE").val();
+        Data.EMAIL = $("#EMAIL").val();
+        Data.DOS = $("#DOS").val();
+        Data.WEIGHT = $("#WEIGHT").val();
+        Data.HEIGHT = $("#HEIGHT").val();
+        Data.IDENTITY_OF_BODY = $("#IDENTITY_OF_BODY").val();
+        Data.AADDRESS = $("#AADDRESS").val();
+        Data.PIN_CODE = $("#PIN_CODE").val();
+        Data.CITY_ID = $("#CITY_ID").val();
+
+        Data.PREMIUM = $("#PREMIUM").val();
+        Data.POLICY_NUMBER = $("#POLICY_NUMBER").val();
+        Data.SUM_OF_ASSURANCE = $("#SUM_OF_ASSURANCE").val();
+        Data.PLAN_ID = $("#PLAN_ID").val();
+        Data.MODE_ID = $("#MODE_ID").val();
+        Data.TERM_ID = $("#TERM_ID").val();
+        Data.DATE_OF_MATURITY = $("#DATE_OF_MATURITY").val();
+        Data.NEXT_PREMIUM_DATE = $("#NEXT_PREMIUM_DATE").val();
+        Data.NOMINEE = $("#NOMINEE").val();
+
+        $('.modal-backdrop').removeClass();
+
+        $.ajax({
+            data: Data,
+            type: "POST",
+            url: '@Url.Action("Create","Client")',
+            success: function (response) {
+                if (response == "Please fill all fields.") {
+                    alert(response);
+                }
+                else {
+                    $("#closemodel").click();
+                    alert(response);
+                    $("#Data-Block").empty();
+                    loadContent();
+                }
+            },
+        });
+    }
+
+
+
+    var obj = {};
+    function fillEditForm(id) {
+        $.ajax({
+            url: '@Url.Action("Edit","Client")',
+            type: 'GET',
+            data: 'id=' + id,
+            success: function (response) {
+                // document.write(JSON.stringify(response));
+
+                $("#CLIENT_ID").val(response.CLIENT_ID);
+                $("#CLIENTASSURANCE_ID").val(response.CLIENTASSURANCE_ID);
+
+                $("#FIRST_NAME").val(response.FIRST_NAME);
+                $("#LAST_NAME").val(response.LAST_NAME);
+                $("#MIDDLE_NAME").val(response.MIDDLE_NAME);
+
+
+                $("#DOB").val(GetDateData(response.DOB));
+                $("#AGE").val(response.AGE);
+                $("#MOBILE").val(response.AGE);
+                $("#EMAIL").val(response.EMAIL);
+                $("#DOS").val(GetDateData(response.DOS));
+                $("#WEIGHT").val(response.WEIGHT);
+                $("#HEIGHT").val(response.HEIGHT);
+                $("#IDENTITY_OF_BODY").val(response.IDENTITY_OF_BODY);
+                $("#AADDRESS").val(response.AADDRESS);
+                $("#PIN_CODE").val(response.PIN_CODE);
+
+                $("#COUNTRY_ID").val(response.COUNTRY_ID);
+                FillState(response.STATE_ID);
+
+
+                $("#PREMIUM").val(response.PREMIUM);
+                $("#POLICY_NUMBER").val(response.POLICY_NUMBER);
+                $("#SUM_OF_ASSURANCE").val(response.SUM_OF_ASSURANCE);
+                $("#PLAN_ID").val(response.PLAN_ID);
+                $("#MODE_ID").val(response.MODE_ID);
+                $("#TERM_ID").val(response.TERM_ID);
+                $("#DATE_OF_MATURITY").val(GetDateData(response.DATE_OF_MATURITY));
+                $("#NEXT_PREMIUM_DATE").val(GetDateData(response.NEXT_PREMIUM_DATE));
+                $("#NOMINEE").val(response.NOMINEE);
+                // $("#STATE_ID").val(response.STATE_ID);
+
+
+                // $("#CITY_ID").val(response.CITY_ID);
+                localStorage.setItem('cityid', response.CITY_ID);
+            }
+        });
+    }
+
+    function clearForm() {
+        $("#CLIENT_ID").val("");
+        $("#CLIENTASSURANCE_ID").val("");
+
+        $("#FIRST_NAME").val("");
+        $("#LAST_NAME").val("");
+        $("#MIDDLE_NAME").val("");
+        $("#DOB").val("");
+        $("#AGE").val("");
+        $("#MOBILE").val("");
+        $("#EMAIL").val("");
+        $("#DOS").val("");
+        $("#WEIGHT").val("");
+        $("#HEIGHT").val("");
+        $("#IDENTITY_OF_BODY").val("");
+        $("#AADDRESS").val("");
+        $("#PIN_CODE").val("");
+        $("#CITY_ID").val("");
+
+        $("#PREMIUM").val("");
+        $("#POLICY_NUMBER").val("");
+        $("#SUM_OF_ASSURANCE").val("");
+        $("#PLAN_ID").val("");
+        $("#MODE_ID").val("");
+        $("#TERM_ID").val("");
+        $("#DATE_OF_MATURITY").val("");
+        $("#NEXT_PREMIUM_DATE").val("");
+        $("#NOMINEE").val("");
+    }
+
+    function FillState(id) {
+        var countryid = document.getElementById("COUNTRY_ID").value;
+        $.ajax({
+            url: '/Admin/City/FillState',
+            type: 'GET',
+            data: 'countryid=' + countryid,
+            success: function (state) {
+                $("#STATE_ID").html("");
+                $("#STATE_ID").append("<option value=''>-Select State-</option>");
+                for (var s in state) {
+                    if (id == state[s].Value) {
+                        $("#STATE_ID").append("<option selected value='" + state[s].Value + "'>" + state[s].Text + "</option>");
+
+                    }
+                    else { $("#STATE_ID").append("<option value='" + state[s].Value + "'>" + state[s].Text + "</option>"); }
+
+                }
+                FillCity(localStorage.getItem('cityid'));
+            }
+        });
+
+
+    }
+    function FillCity(id) {
+        var stateid = $("#STATE_ID").val();
+        $.ajax({
+            url: '/Admin/City/FillCity',
+            type: 'Get',
+            data: 'stateid=' + stateid,
+            success: function (response) {
+                $("#CITY_ID").html("");
+                $("#CITY_ID").append("<option value=''>-Select City-</option>");
+                for (var c in response) {
+                    if (id == response[c].Value) {
+                        $("#CITY_ID").append("<option selected value='" + response[c].Value + "'>" + response[c].Text + "</option>");
+                    }
+                    else {
+                        $("#CITY_ID").append("<option value='" + response[c].Value + "'>" + response[c].Text + "</option>");
+                    }
+
+                }
+            }
+        });
+
+    }
+    function GetDateData(stringDate) {
+        var d = new Date(parseInt(stringDate.replace('/Date(', '').replace(')/', ''))).toLocaleDateString().split("/");
+        // `y` : year
+        var y = d.splice(-1)[0];
+        // set `y` as item at index `0` of `d`
+        d.splice(0, 0, y);
+        // join items within `d` with dash character `"-"`
+        var date = d[1] + "/" + d[2] + "/" + d[0];
+        return date;
+    }
+
+    function validateForm() {
+        if ($("#myform").validate()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>

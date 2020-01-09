@@ -1,0 +1,13 @@
+Database
+============
+Server Name = mssql4.gear.host
+User Name   = liccmsdb
+Password    = Su4Y~wkHmW-k	
+Jayesh_2298
+
+Host
+===========
+Hostname: ftp.gear.host
+Username: liccms\$liccms
+Password: ElhN2w3YsfDrHQjl4zAMwp1myySjD8PLegznvgG9WXv1aNQ8dJciry0ol7Jn
+

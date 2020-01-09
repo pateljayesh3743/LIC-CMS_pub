@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Term List</h4>
+    </div>
+</div>
+<div><button type="button" class="btn btn-info load-model" data-toggle="modal" data-target="#myTermModal">Create Term</button></div>
+<div style="margin-top:17px">
+    <div id="Data-Block">
+    </div>
+</div>
+@model LIC_CMS.Areas.Admin.Models.TermModel
+
+@using (Html.BeginForm())
+{
+    <div id="myTermModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title label-english">Create Term</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.HiddenFor(x => x.TERM_ID)
+                            @Html.LabelFor(x => x.TERM_NAME, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(x => x.TERM_NAME, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.TERM_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <input type="button" value="Submit" class="btn btn-info form-label" id="addterm">
+                            <button type="button" class="btn btn-default" id="closemodel" data-dismiss="modal" onclick="clearForm()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script>
+    $(document).ready(function () {
+        loadContent();
+    });
+
+    function loadContent() {
+        $.ajax({
+            url: '@Url.Action("GetGrid", "Term")',
+            type: 'GET',
+            success: function (d) {
+                $("#Data-Block").append(d);
+            }
+        })
+    }
+
+    $('#addterm').click(function (e) {
+        //$('#formuser').Validate();
+        var Data = {};
+        Data.TERM_ID = $("#TERM_ID").val();
+        if (Data.TERM_ID == '') {
+            Data.TERM_ID = 0;
+        }
+        Data.TERM_NAME = $("#TERM_NAME").val();
+        
+        $('.modal-backdrop').removeClass();
+
+
+        $.ajax({
+            data: Data,
+            type: "POST",
+            url: '@Url.Action("Create","Term")',
+            success: function (response) {
+                if (response == "Please fill all fields.") {
+                    alert(response);
+                }
+                else {
+                    $("#closemodel").click();
+                    alert(response);
+                    $("#Data-Block").empty();
+                    loadContent();
+                }
+            },
+        });
+
+    });
+
+    function fillEditForm(id) {
+        $.ajax({
+            url: '@Url.Action("Edit","Term")',
+            type: 'GET',
+            data: 'id=' + id,
+            success: function (response) {
+                $("#TERM_ID").val(response.TERM_ID);
+                $("#TERM_NAME").val(response.TERM_NAME);
+            }
+        });
+    }
+
+    function clearForm() {
+        $("#TERM_ID").val("");
+        $("#TERM_NAME").val("");
+    }
+</script>
+
+

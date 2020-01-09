@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="92719caea61d49349613c788ade142ab" Name="Diagram1">
+        <EntityTypeShape EntityType="liccmsdbModel.CITY_MASTER" Width="1.5" PointX="3.75" PointY="2.375" />
+        <EntityTypeShape EntityType="liccmsdbModel.CLIENT_MASTER" Width="1.5" PointX="6" PointY="4.5" />
+        <EntityTypeShape EntityType="liccmsdbModel.CLIENTASSURANCE_MASTER" Width="1.5" PointX="8.25" PointY="4.875" />
+        <EntityTypeShape EntityType="liccmsdbModel.COUNTRY_MASTER" Width="1.5" PointX="1.5" PointY="10.625" />
+        <EntityTypeShape EntityType="liccmsdbModel.MODE_MASTER" Width="1.5" PointX="6" PointY="12" />
+        <EntityTypeShape EntityType="liccmsdbModel.PLAN_MASTER" Width="1.5" PointX="6" PointY="15.375" />
+        <EntityTypeShape EntityType="liccmsdbModel.ROLE_MASTER" Width="1.5" PointX="8.75" PointY="1.75" />
+        <EntityTypeShape EntityType="liccmsdbModel.STATE_MASTER" Width="1.5" PointX="1.5" PointY="2.5" />
+        <EntityTypeShape EntityType="liccmsdbModel.TERM_MASTER" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="liccmsdbModel.USER_DETAIL_MASTER" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="liccmsdbModel.USER_MASTER" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="liccmsdbModel.FK__CITY_MAST__STATE__33D4B598" />
+        <AssociationConnector Association="liccmsdbModel.FK__CLIENT_MA__CITY___3D5E1FD2" />
+        <AssociationConnector Association="liccmsdbModel.FK__USER_DETA__CITY___35BCFE0A" />
+        <AssociationConnector Association="liccmsdbModel.FK__CLIENT_MA__USER___3C69FB99" />
+        <AssociationConnector Association="liccmsdbModel.FK__CLIENTASS__CLIEN__403A8C7D" />
+        <AssociationConnector Association="liccmsdbModel.FK__CLIENTASS__MODE___4316F928" />
+        <AssociationConnector Association="liccmsdbModel.FK__CLIENTASS__PLAN___412EB0B6" />
+        <AssociationConnector Association="liccmsdbModel.FK__CLIENTASS__TERM___4222D4EF" />
+        <AssociationConnector Association="liccmsdbModel.FK__STATE_MAS__COUNT__34C8D9D1" />
+        <AssociationConnector Association="liccmsdbModel.FK__USER_DETA__USER___36B12243" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

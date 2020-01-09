@@ -1,0 +1,173 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">City List</h4>
+    </div>
+</div>
+<div><button type="button" class="btn btn-info load-model" data-toggle="modal" data-target="#myCityModal">Create City</button></div>
+<div style="margin-top:17px">
+    <div id="Data-Block">
+    </div>
+</div>
+@model LIC_CMS.Areas.Admin.Models.CityModel
+@using (Html.BeginForm())
+{
+    <div id="myCityModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title label-english">Create City</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.HiddenFor(x => x.CITY_ID)
+                            @Html.LabelFor(x => x.COUNTRY_ID, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(x => x.COUNTRY_ID, LIC_CMS.Areas.Admin.Models.StateModel.countrylist(), "-Select Country-", new { @onchange = "FillState()", @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.COUNTRY_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(x => x.STATE_ID, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            <select id='STATE_ID' name="STATE_ID" class="form-control">
+                                <option>-Select State-</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.STATE_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(x => x.CITY_NAME, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(x => x.CITY_NAME, new { @onchange = "FillState()", @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.CITY_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <input type="button" value="Submit" class="btn btn-info form-label" id="addstate">
+                            <button type="button" class="btn btn-default" id="closemodel" data-dismiss="modal" onclick="clearForm()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+    $(document).ready(function () {
+        loadContent();
+    });
+
+    function loadContent() {
+        $.ajax({
+            url: '@Url.Action("GetGrid", "City")',
+            type: 'GET',
+            success: function (d) {
+                $("#Data-Block").append(d);
+            }
+        })
+    }
+
+    $('#addstate').click(function (e) {
+        //$('#formuser').Validate();
+        var Data = {};
+        Data.CITY_ID = $("#CITY_ID").val();
+        if (Data.CITY_ID == '') {
+            Data.CITY_ID = 0;
+        }
+        Data.CITY_NAME = $("#CITY_NAME").val();
+        Data.STATE_ID = $("#STATE_ID").val();
+
+        $('.modal-backdrop').removeClass();
+
+
+        $.ajax({
+            data: Data,
+            type: "POST",
+            url: '@Url.Action("Create","City")',
+            success: function (response) {
+                if (response == "Please fill all fields.") {
+                    alert(response);
+                }
+                else {
+                    $("#closemodel").click();
+                    alert(response);
+                    $("#Data-Block").empty();
+                    loadContent();
+                }
+            },
+        });
+
+    });
+
+    function fillEditForm(id) {
+        $.ajax({
+            url: '@Url.Action("Edit","City")',
+            type: 'GET',
+            data: 'id=' + id,
+            success: function (response) {
+                $("#CITY_ID").val(response.CITY_ID);
+                $("#STATE_ID").val(response.STATE_ID);
+                $("#CITY_NAME").val(response.CITY_NAME);
+                $("#COUNTRY_ID").val(response.COUNTRY_ID);
+                FillState(response.STATE_ID);
+            }
+        });
+    }
+
+    function FillState(id) {
+        var countryid = document.getElementById("COUNTRY_ID").value;
+        $.ajax({
+            url: '@Url.Action("FillState","City")',
+            type: 'GET',
+            data: 'countryid=' + countryid,
+            success: function (state) {
+                console.log(state);
+                $("#STATE_ID").html("");
+                $("#STATE_ID").append("<option value=''>-Select State-</option>");
+                for (var s in state) {
+                    if (id == state[s].Value)
+                    {
+                        $("#STATE_ID").append("<option selected value='" + state[s].Value + "'>" + state[s].Text + "</option>");
+                    }
+                    else {
+                        $("#STATE_ID").append("<option value='" + state[s].Value + "'>" + state[s].Text + "</option>");
+                    }
+                }
+            }
+        });
+    }
+
+    function clearForm() {
+        $("#CITY_ID").val("");
+        $("#STATE_ID").val("");
+        $("#CITY_NAME").val("");
+    }
+</script>
+
+
+

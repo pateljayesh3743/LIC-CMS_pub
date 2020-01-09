@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Dashboard</h4>
+    </div>
+</div>
+<div class="row">
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-one">
+            <a href="#" style="font-size:36px">@ViewBag.UserCount</a>
+            <a href="/Admin/User" style="color:white"><h4>User List</h4></a>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-two">
+            <a href="#" style="font-size:36px">@ViewBag.CountryCount</a>
+            <a href="/Admin/Country" style="color:white"><h4>Country List</h4></a>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-three">
+            <a href="#" style="font-size:36px">@ViewBag.StateCount</a>
+            <a href="/Admin/State" style="color:white"><h4>State List</h4></a>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-four">
+            <a href="#" style="font-size:36px">@ViewBag.CityCount</a>
+            <a href="/Admin/City" style="color:white"><h4>City List</h4></a>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-four">
+            <a href="#" style="font-size:36px">@ViewBag.PlanCount</a>
+            <a href="/Admin/Plan" style="color:white"><h4>Plan List</h4></a>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-three">
+            <a href="#" style="font-size:36px">@ViewBag.TermCount</a>
+            <a href="/Admin/Term" style="color:white"><h4>Term List</h4></a>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <div class="dashboard-div-wrapper bk-clr-three">
+            <a href="#" style="font-size:36px">@ViewBag.ModeCount</a>
+            <a href="/Admin/Mode" style="color:white"><h4>Mode List</h4></a>
+        </div>
+    </div>
+</div>
+

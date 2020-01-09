@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Plan List</h4>
+    </div>
+</div>
+<div><button type="button" class="btn btn-info load-model" data-toggle="modal" data-target="#myPlanModal">Create Plan</button></div>
+<div style="margin-top:17px">
+    <div id="Data-Block">
+    </div>
+</div>
+@model LIC_CMS.Areas.Admin.Models.PlanModel
+
+@using (Html.BeginForm())
+{
+    <div id="myPlanModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title label-english">Create Plan</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.HiddenFor(x => x.PLAN_ID)
+                            @Html.LabelFor(x => x.PLAN_NAME, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(x => x.PLAN_NAME, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.PLAN_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(x => x.PLAN_CODE, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(x => x.PLAN_CODE, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.PLAN_CODE, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <input type="button" value="Submit" class="btn btn-info form-label" id="addplan">
+                            <button type="button" class="btn btn-default" id="closemodel" data-dismiss="modal" onclick="clearForm()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script>
+    $(document).ready(function () {
+        loadContent();
+    });
+
+    function loadContent() {
+        $.ajax({
+            url: '@Url.Action("GetGrid", "Plan")',
+            type: 'GET',
+            success: function (d) {
+                $("#Data-Block").append(d);
+            }
+        })
+    }
+
+    $('#addplan').click(function (e) {
+        //$('#formuser').Validate();
+        var Data = {};
+        Data.PLAN_ID = $("#PLAN_ID").val();
+        if (Data.PLAN_ID == '') {
+            Data.PLAN_ID = 0;
+        }
+        Data.PLAN_NAME = $("#PLAN_NAME").val();
+        Data.PLAN_CODE = $("#PLAN_CODE").val();
+
+        $('.modal-backdrop').removeClass();
+
+
+        $.ajax({
+            data: Data,
+            type: "POST",
+            url: '@Url.Action("Create","Plan")',
+            success: function (response) {
+                if (response == "Please fill all fields.") {
+                    alert(response);
+                }
+                else {
+                    $("#closemodel").click();
+                    alert(response);
+                    $("#Data-Block").empty();
+                    loadContent();
+                }
+            },
+        });
+
+    });
+
+    function fillEditForm(id) {
+        $.ajax({
+            url: '@Url.Action("Edit","Plan")',
+            type: 'GET',
+            data: 'id=' + id,
+            success: function (response) {
+                $("#PLAN_ID").val(response.PLAN_ID);
+                $("#PLAN_NAME").val(response.PLAN_NAME);
+                $("#PLAN_CODE").val(response.PLAN_CODE);
+            }
+        });
+    }
+
+    function clearForm() {
+        $("#PLAN_ID").val("");
+        $("#PLAN_NAME").val("");
+        $("#PLAN_CODE").val("");
+    }
+</script>
+
+

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LIC_CMS.Areas.Admin.Models.CountryModel>
+
+    <table id="table_data" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                @*<th>Country Id</th>*@
+                <th>Country Name</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>@item.COUNTRY_ID</td>*@
+                    <td>@item.COUNTRY_NAME</td>
+                    <td><a><span onclick="fillEditForm(@item.COUNTRY_ID)" data-toggle="modal" data-target="#myCountryModal" class="glyphicon glyphicon-edit cursorPointer"></span></a></td>
+                    <td><a href="Delete/@item.COUNTRY_ID" ><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<script src="~/Content/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/datatables/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table_data').DataTable({
+            responsive: true
+        });
+    });
+</script>
+
+
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

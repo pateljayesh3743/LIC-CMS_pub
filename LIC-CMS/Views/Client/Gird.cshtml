@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+
+<table id="table_data" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Client Name</th>
+            <th>Premium</th>
+            <th>Policy Number</th>
+            <th>Next Premium Date</th>
+            <th>Sum Of Assurance</th>
+            <th>Date of Maturity</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Client)
+        {
+            <tr>
+                <td>@item.FIRST_NAME @item.MIDDLE_NAME @item.LAST_NAME</td>
+                <td>@item.PREMIUM</td>
+                <td>@item.POLICY_NUMBER</td>
+                <td>@item.NEXT_PREMIUM_DATE</td>
+                <td>@item.SUM_OF_ASSURANCE</td>
+                <td>@item.DATE_OF_MATURITY</td>
+                <td><span onclick="fillEditForm(@item.CLIENT_ID)" data-toggle="modal" data-target="#myClientModal">Edit</span></td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.CLIENT_ID }, new { onclick = "return confirm('Are you delete this Client?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script src="~/Content/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/datatables/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table_data').DataTable({
+            responsive: true
+        });
+    });
+</script>
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

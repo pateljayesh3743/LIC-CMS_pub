@@ -1,0 +1,178 @@
+﻿@model LIC_CMS.Models.UserDetailModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/assets/js/jquery-1.11.1.js"></script>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Create Profile</h4>
+    </div>
+</div>
+<div class="row">
+    <div><span class="@ViewBag.Color">@ViewBag.Message</span></div>
+    @using (Html.BeginForm("Create", "UserDetail", FormMethod.Post, new
+    {
+        enctype = "multipart/form-data"
+        ,@class="form-horizontal"
+    }))
+    {
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.FIRST_NAME, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.FIRST_NAME, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.FIRST_NAME)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.MIDDLE_NAME, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.MIDDLE_NAME, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.MIDDLE_NAME)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.LAST_NAME, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.LAST_NAME, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.LAST_NAME)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.EMAIL, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.EMAIL, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.EMAIL)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.MOBILE, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.MOBILE, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.MOBILE)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.AGENT_CODE, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.AGENT_CODE, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.AGENT_CODE)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.ADDRESS, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextAreaFor(x => x.ADDRESS, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.PIN_CODE, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.PIN_CODE, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.PIN_CODE)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.COUNTRY_ID, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.COUNTRY_ID, LIC_CMS.Areas.Admin.Models.StateModel.countrylist(), "-Select Country-", new { @onchange = "FillState()", @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.COUNTRY_ID)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.STATE_ID, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    <select id='STATE_ID' name="STATE_ID" class="form-control" onchange="FillCity()">
+                        <option>-Select State-</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.STATE_ID)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.LabelFor(x => x.CITY_ID, new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    <select id='CITY_ID' name="CITY_ID" class="form-control">
+                        <option>-Select City-</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.CITY_ID)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    @Html.Label("Profile Image", new { @class = "control-label" })
+                </div>
+                <div class="col-md-8">
+                    <input type="file" name="photo" id="photo" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6"></div>
+            <input type="submit" value="Submit" class="btn btn-info form-label">
+        </div>
+    }
+    <script type="text/javascript">
+        function FillState() {
+            var countryid = document.getElementById("COUNTRY_ID").value;
+            $.ajax({
+                url: '/Admin/City/FillState',
+                type: 'GET',
+                data: 'countryid=' + countryid,
+                success: function (state) {
+                    $("#STATE_ID").html("");
+                    $("#STATE_ID").append("<option value=''>-Select State-</option>");
+                    for (var s in state) {
+                        $("#STATE_ID").append("<option value='" + state[s].Value + "'>" + state[s].Text + "</option>");
+                    }
+                }
+            });
+        }
+        function FillCity() {
+            var stateid = $("#STATE_ID").val();
+            $.ajax({
+                url: '/Admin/City/FillCity',
+                type: 'Get',
+                data: 'stateid=' + stateid,
+                success: function (response) {
+                    $("#CITY_ID").html("");
+                    $("#CITY_ID").append("<option value=''>-Select City-</option>");
+                    for (var c in response) {
+                        $("#CITY_ID").append("<option value='" + response[c].Value + "'>" + response[c].Text + "</option>");
+                    }
+                }
+            });
+        }
+    </script>
+</div>
+
+
+
+

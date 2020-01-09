@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LIC_CMS.Areas.Admin.Models.UserModel>
+@{
+    ViewBag.Title = "Index";
+//    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+    <table id="table_data" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Password</th>
+                <th>CreateOn</th>
+                <th>IsActive</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.USER_NAME</td>
+                    <td>@item.PASSWORD</td>
+                    <td>@item.CREATED_ON</td>
+                    <td>@item.IS_ACTIVE</td>
+                    <td><a><span onclick="fillEditForm(@item.USER_ID)" data-toggle="modal" data-target="#myUserModal" class="glyphicon glyphicon-edit cursorPointer"></span></a></td>
+                    @*<td>@Html.ActionLink("Delete", "Delete", new { id = item.USER_ID }, new { onclick = "return confirm('Are you delete this User?')" })</td>*@
+                    <td><a href="Delete/@item.USER_ID" onclick="return confirm('Are you delete this User?')"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<script src="~/Content/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/datatables/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table_data').DataTable({
+            responsive: true
+        });
+    });
+</script>
+

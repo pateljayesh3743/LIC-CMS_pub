@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LIC_CMS.Areas.Admin.Models.CityModel>
+@{
+    ViewBag.Title = "Index";
+//    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+    <table id="table_data" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                @*<th>City Id</th>*@
+                <th>City Name</th>
+                <th>State Name</th>
+                <th>Country Name</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>@item.CITY_ID</td>*@
+                    <td>@item.CITY_NAME</td>
+                    <td>@LIC_CMS.Areas.Admin.Models.CityModel.getStateNameById(item.STATE_ID)</td>
+                    <td>@LIC_CMS.Areas.Admin.Models.StateModel.getCountryNameById(item.STATE_ID)</td>
+                    <td><a><span onclick="fillEditForm(@item.CITY_ID)" data-toggle="modal" data-target="#myCityModal" class="glyphicon glyphicon-edit cursorPointer"></span></a></td>
+                    @*<td>@Html.ActionLink("Delete", "Delete", new { id = item.CITY_ID }, new { onclick = "return confirm('Are you delete this User?')" })</td>*@
+                    <td><a href="Delete/@item.CITY_ID"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+<script src="~/Content/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/datatables/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#table_data').DataTable({
+            responsive: true
+        });
+    });
+</script>

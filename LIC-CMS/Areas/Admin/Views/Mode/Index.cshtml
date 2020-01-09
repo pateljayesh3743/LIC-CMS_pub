@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Mode List</h4>
+    </div>
+</div>
+<div><button type="button" class="btn btn-info load-model" data-toggle="modal" data-target="#myModeModal">Create Mode</button></div>
+<div style="margin-top:17px">
+    <div id="Data-Block">
+    </div>
+</div>
+@model LIC_CMS.Areas.Admin.Models.ModeModel
+
+@using (Html.BeginForm())
+{
+    <div id="myModeModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title label-english">Create Mode</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.HiddenFor(x => x.MODE_ID)
+                            @Html.LabelFor(x => x.MODE_NAME, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(x => x.MODE_NAME, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.MODE_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <input type="button" value="Submit" class="btn btn-info form-label" id="addmode">
+                            <button type="button" class="btn btn-default" id="closemodel" data-dismiss="modal" onclick="clearForm()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<script>
+    $(document).ready(function () {
+        loadContent();
+    });
+
+    function loadContent() {
+        $.ajax({
+            url: '@Url.Action("GetGrid", "Mode")',
+            type: 'GET',
+            success: function (d) {
+                $("#Data-Block").append(d);
+            }
+        })
+    }
+
+    $('#addmode').click(function (e) {
+        //$('#formuser').Validate();
+        var Data = {};
+        Data.MODE_ID = $("#MODE_ID").val();
+        if (Data.MODE_ID == '') {
+            Data.MODE_ID = 0;
+        }
+        Data.MODE_NAME = $("#MODE_NAME").val();
+
+        $('.modal-backdrop').removeClass();
+
+
+        $.ajax({
+            data: Data,
+            type: "POST",
+            url: '@Url.Action("Create","Mode")',
+            success: function (response) {
+                if (response == "Please fill all fields.") {
+                    alert(response);
+                }
+                else {
+                    $("#closemodel").click();
+                    alert(response);
+                    $("#Data-Block").empty();
+                    loadContent();
+                }
+            },
+        });
+
+    });
+
+    function fillEditForm(id) {
+        $.ajax({
+            url: '@Url.Action("Edit","Mode")',
+            type: 'GET',
+            data: 'id=' + id,
+            success: function (response) {
+                $("#MODE_ID").val(response.MODE_ID);
+                $("#MODE_NAME").val(response.MODE_NAME);
+            }
+        });
+    }
+
+    function clearForm() {
+        $("#MODE_ID").val("");
+        $("#MODE_NAME").val("");
+    }
+</script>
+
+

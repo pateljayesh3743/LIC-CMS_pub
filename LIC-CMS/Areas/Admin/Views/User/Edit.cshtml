@@ -1,0 +1,41 @@
+﻿@model LIC_CMS.Areas.Admin.Models.UserModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Update User</h4>
+    </div>
+</div>
+<div class="col-md-6">
+    <div><span class="@ViewBag.Color">@ViewBag.Message</span></div>
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.HiddenFor(x=>x.UserId)
+        <div class="form-group">
+            @Html.LabelFor(x => x.UserName, new { @class = "form-lable" })
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.UserName)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Password, new { @class = "form-lable" })
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.ConfirmPassword, new { @class = "form-lable" })
+            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.ConfirmPassword)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-info form-label">
+        </div>
+    }
+</div>
+
+
+

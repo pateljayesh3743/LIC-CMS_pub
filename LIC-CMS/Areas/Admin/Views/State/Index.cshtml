@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">State List</h4>
+    </div>
+</div>
+<div><button type="button" class="btn btn-info load-model" data-toggle="modal" data-target="#myStateModal">Create State</button></div>
+<div style="margin-top:17px">
+    <div id="Data-Block">
+    </div>
+</div>
+@model LIC_CMS.Areas.Admin.Models.StateModel
+@using (Html.BeginForm())
+{
+    <div id="myStateModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title label-english">Create State</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.HiddenFor(x => x.STATE_ID)
+                            @Html.LabelFor(x => x.COUNTRY_ID, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.DropDownListFor(x => x.COUNTRY_ID, LIC_CMS.Areas.Admin.Models.StateModel.countrylist(), "-Select Country-", new { @onchange = "FillState()", @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.COUNTRY_ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(x => x.STATE_NAME, new { @class = "control-lable" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(x => x.STATE_NAME, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ValidationMessageFor(x => x.STATE_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <input type="button" value="Submit" class="btn btn-info form-label" id="addstate">
+                            <button type="button" class="btn btn-default" id="closemodel" data-dismiss="modal" onclick="clearForm()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script>
+    $(document).ready(function () {
+        loadContent();
+    });
+
+    function loadContent() {
+        $.ajax({
+            url: '@Url.Action("GetGrid", "State")',
+            type: 'GET',
+            success: function (d) {
+                $("#Data-Block").append(d);
+            }
+        })
+    }
+
+    $('#addstate').click(function (e) {
+        //$('#formuser').Validate();
+        var Data = {};
+        Data.STATE_ID = $("#STATE_ID").val();
+        if (Data.STATE_ID == '') {
+            Data.STATE_ID = 0;
+        }
+        Data.COUNTRY_ID = $("#COUNTRY_ID").val();
+        Data.STATE_NAME = $("#STATE_NAME").val();
+
+        $('.modal-backdrop').removeClass();
+
+
+        $.ajax({
+            data: Data,
+            type: "POST",
+            url: '@Url.Action("Create","State")',
+            success: function (response) {
+                if (response == "Please fill all fields.") {
+                    alert(response);
+                }
+                else {
+                    $("#closemodel").click();
+                    alert(response);
+                    $("#Data-Block").empty();
+                    loadContent();
+                }
+            },
+        });
+
+    });
+
+    function fillEditForm(id) {
+        $.ajax({
+            url: '@Url.Action("Edit","State")',
+            type: 'GET',
+            data: 'id=' + id,
+            success: function (response) {
+                $("#COUNTRY_ID").val(response.COUNTRY_ID);
+                $("#STATE_ID").val(response.STATE_ID);
+                $("#STATE_NAME").val(response.STATE_NAME);
+            }
+        });
+    }
+
+    function clearForm() {
+        $("#COUNTRY_ID").val("");
+        $("#STATE_ID").val("");
+        $("#STATE_NAME").val("");
+    }
+</script>
+
+

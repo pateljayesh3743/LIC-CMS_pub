@@ -1,0 +1,149 @@
+Role
+======
+RoleId (PK)   
+Role Name (Admin,User)
+
+
+UserMaster
+===========
+UserId (PK)
+UserName
+Password
+CreatedOn
+CreatedBy
+RoleId (FK)
+
+
+UserDetailMaster
+================
+UserDetailId (PK)
+First Name
+Middle Name
+Last Name
+Mobile
+Email
+Address
+CityId (FK)
+Pin Code
+UserId  (FK)
+AgentCode 
+
+
+Mode
+=====
+ModeId (PK)
+Mode Name (singal,monthly,half quertly,quertly,yearly)
+
+
+Term
+======
+TermId (PK)
+Term Name (How many year of pay premium to LIC.)
+
+
+Plan
+=======
+PlanId (PK)
+Plan Code 
+Plan Name
+
+
+ClientDetailMaster
+===================
+ClientDetailId (PK)
+First Name
+Last Name
+Middle Name
+Date of Birth
+AGE (calculate to date of birth.)
+Mobile
+Email
+Date Of Start
+wait of client
+height of client
+Identity sign of Body 
+UserId (FK)
+
+
+
+ClientAssuranceDetail
+=====================
+ClientAssuranceDetailId  (PK)
+Premium
+Policy Number
+Sum of Assurance
+PlanId 					 (FK)
+TermId 					 (FK)
+ModeId 					 (FK)
+Date of Maturity (date of pay all payment (Bonus + Sum Assurance))
+Next Premium Date
+Nominee
+ClientDetailId           (FK)
+
+
+CountryMaster
+==============
+CountryId                 (PK)
+CountryName 
+
+StateMaster
+===============
+StateId                   (PK)
+StateName
+CountryId                 (FK)
+
+
+CityMaster
+===========
+CityId                    (PK)           
+CityName         
+StateId                   (FK)
+
+
+
+
+
+====================================================
+create table CLIENT_MASTER
+(
+	CLIENT_ID INT PRIMARY KEY IDENTITY,
+	FIRST_NAME VARCHAR(50),
+	LAST_NAME VARCHAR(50),
+	MIDDLE_NAME VARCHAR(50),
+	DOB DATETIME,
+	AGE INT,
+	MOBILE VARCHAR(20),
+	EMAIL VARCHAR(30),
+	DOS DATETIME ,
+	WEIGHT FLOAT ,
+	HEIGHT FLOAT,
+	IDENTITY_OF_BODY VARCHAR(500),
+	ADDRESS VARCHAR(MAX),
+	PIN_CODE VARCHAR(20),
+	CITY_ID INT,
+	USER_ID INT,
+	FOREIGN KEY (USER_ID) REFERENCES USER_MASTER(USER_ID),
+	FOREIGN KEY (CITY_ID) REFERENCES CITY_MASTER(CITY_ID)
+)
+
+
+CREATE TABLE CLIENTASSURANCE_MASTER
+(
+	CLIENTASSURANCE_ID INT PRIMARY KEY IDENTITY,
+	PREMIUM FLOAT,
+	POLICY_NUMBER VARCHAR(20),
+	SUM_OF_ASSURANCE FLOAT,
+	PLAN_ID INT,
+	MODE_ID INT,
+	TERM_ID INT,
+	DATE_OF_MATURITY DATETIME,
+	NEXT_PREMIUM_DATE DATETIME,
+	NOMINEE VARCHAR(MAX),
+	CLIENT_ID INT,
+	FOREIGN KEY (CLIENT_ID) REFERENCES CLIENT_MASTER(CLIENT_ID),
+	FOREIGN KEY (PLAN_ID) REFERENCES PLAN_MASTER(PLAN_ID),
+	FOREIGN KEY (TERM_ID) REFERENCES TERM_MASTER(TERM_ID),
+	FOREIGN KEY (MODE_ID) REFERENCES MODE_MASTER(MODE_ID)
+)
+
+

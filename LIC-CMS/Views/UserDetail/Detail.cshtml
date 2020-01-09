@@ -1,0 +1,128 @@
+﻿@model LIC_CMS.Models.UserDetailModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/assets/js/jquery-1.11.1.js"></script>
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="page-head-line">Profile Detail
+        <a href="/UserDetail/Edit/@Model.USER_DETAIL_ID" class="btn btn-info form-label" style="float:right">Update Profile</a></h4>
+    </div>
+</div>
+<div class="row">
+    <div><span class="@ViewBag.Color">@ViewBag.Message</span></div>
+    @using (Html.BeginForm("Create", "UserDetail", FormMethod.Post, new
+    {
+        enctype = "multipart/form-data"
+        ,
+        @class = "form-horizontal"
+    }))
+    {
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <label class="col-md-3">Agent Code :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.AGENT_CODE</label>
+
+            </div>
+            <div class="form-group">
+                
+                   <label class="col-md-3">First Name :</label>
+                    <label class="col-md-9 col-md-pull-1">@Model.FIRST_NAME</label>
+            </div>
+            <div class="form-group">
+                
+                <label class="col-md-3">Middle Name :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.MIDDLE_NAME</label>
+               
+            </div>
+
+            <div class="form-group">
+               
+                <label class="col-md-3">Last Name :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.LAST_NAME</label>
+               
+            </div>
+            <div class="form-group">
+               
+                <label class="col-md-3">Email :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.EMAIL</label>
+                
+            </div>
+
+            <div class="form-group">
+                
+                <label class="col-md-3">Mobile :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.MOBILE</label>
+                
+            </div>
+
+            
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                
+                <label class="col-md-3">Address :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.ADDRESS</label>
+                
+            </div>
+            <div class="form-group">
+                
+                    <label class="col-md-3">Pin Code :</label>
+                    <label class="col-md-9 col-md-pull-1">@Model.PIN_CODE</label>
+                
+            </div>
+            <div class="form-group">
+                
+                   <label class="col-md-3">Country Name :</label>
+                    <label class="col-md-9 col-md-pull-1">@Model.COUNTRY_ID</label>
+                
+            </div>
+            <div class="form-group">
+                
+                <label class="col-md-3">State Name :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.STATE_ID</label>
+                
+            </div>
+            <div class="form-group">
+                
+                <label class="col-md-3">City Name :</label>
+                <label class="col-md-9 col-md-pull-1">@Model.CITY_ID</label>
+                
+            </div>
+        </div>
+    }
+    <script type="text/javascript">
+        //function FillState() {
+        //    var countryid = document.getElementById("COUNTRY_ID").value;
+        //    $.ajax({
+        //        url: '/Admin/City/FillState',
+        //        type: 'GET',
+        //        data: 'countryid=' + countryid,
+        //        success: function (state) {
+        //            $("#STATE_ID").html("");
+        //            $("#STATE_ID").append("<option value=''>-Select State-</option>");
+        //            for (var s in state) {
+        //                $("#STATE_ID").append("<option value='" + state[s].Value + "'>" + state[s].Text + "</option>");
+        //            }
+        //        }
+        //    });
+        //}
+        //function FillCity() {
+        //    var stateid = $("#STATE_ID").val();
+        //    $.ajax({
+        //        url: '/Admin/City/FillCity',
+        //        type: 'Get',
+        //        data: 'stateid=' + stateid,
+        //        success: function (response) {
+        //            $("#CITY_ID").html("");
+        //            $("#CITY_ID").append("<option value=''>-Select City-</option>");
+        //            for (var c in response) {
+        //                $("#CITY_ID").append("<option value='" + response[c].Value + "'>" + response[c].Text + "</option>");
+        //            }
+        //        }
+        //    });
+        //}
+    </script>
+</div>

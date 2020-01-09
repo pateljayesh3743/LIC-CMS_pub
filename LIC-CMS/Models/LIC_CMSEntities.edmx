@@ -1,0 +1,1253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="liccmsdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CITY_MASTER">
+          <Key>
+            <PropertyRef Name="CITY_ID" />
+          </Key>
+          <Property Name="CITY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CITY_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="STATE_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="CLIENT_MASTER">
+          <Key>
+            <PropertyRef Name="CLIENT_ID" />
+          </Key>
+          <Property Name="CLIENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="AGE" Type="int" />
+          <Property Name="MOBILE" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="30" />
+          <Property Name="DOS" Type="datetime" />
+          <Property Name="WEIGHT" Type="float" />
+          <Property Name="HEIGHT" Type="float" />
+          <Property Name="IDENTITY_OF_BODY" Type="varchar" MaxLength="500" />
+          <Property Name="ADDRESS" Type="varchar(max)" />
+          <Property Name="PIN_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="CITY_ID" Type="int" />
+          <Property Name="USER_ID" Type="bigint" />
+          <Property Name="IS_ACTIVE" Type="bit" />
+          <Property Name="IS_DELETE" Type="bit" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="UPDATE_ON" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CLIENTASSURANCE_MASTER">
+          <Key>
+            <PropertyRef Name="CLIENTASSURANCE_ID" />
+          </Key>
+          <Property Name="CLIENTASSURANCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PREMIUM" Type="float" />
+          <Property Name="POLICY_NUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="SUM_OF_ASSURANCE" Type="float" />
+          <Property Name="PLAN_ID" Type="int" />
+          <Property Name="MODE_ID" Type="int" />
+          <Property Name="TERM_ID" Type="int" />
+          <Property Name="DATE_OF_MATURITY" Type="datetime" />
+          <Property Name="NEXT_PREMIUM_DATE" Type="datetime" />
+          <Property Name="NOMINEE" Type="varchar(max)" />
+          <Property Name="CLIENT_ID" Type="int" />
+          <Property Name="IS_ACTIVE" Type="bit" />
+          <Property Name="IS_DELETE" Type="bit" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="UPDATE_ON" Type="datetime" />
+        </EntityType>
+        <EntityType Name="COUNTRY_MASTER">
+          <Key>
+            <PropertyRef Name="COUNTRY_ID" />
+          </Key>
+          <Property Name="COUNTRY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COUNTRY_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MODE_MASTER">
+          <Key>
+            <PropertyRef Name="MODE_ID" />
+          </Key>
+          <Property Name="MODE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODE_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="IS_ACTIVE" Type="int" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="PLAN_MASTER">
+          <Key>
+            <PropertyRef Name="PLAN_ID" />
+          </Key>
+          <Property Name="PLAN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PLAN_CODE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PLAN_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="int" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="ROLE_MASTER">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_ABBR" Type="varchar" MaxLength="10" />
+          <Property Name="ROLE_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IS_ACTIE" Type="int" />
+        </EntityType>
+        <EntityType Name="STATE_MASTER">
+          <Key>
+            <PropertyRef Name="STATE_ID" />
+          </Key>
+          <Property Name="STATE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="COUNTRY_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="TERM_MASTER">
+          <Key>
+            <PropertyRef Name="TERM_ID" />
+          </Key>
+          <Property Name="TERM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TERM_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="IS_ACTIVE" Type="int" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="USER_DETAIL_MASTER">
+          <Key>
+            <PropertyRef Name="USER_DETAIL_ID" />
+          </Key>
+          <Property Name="USER_DETAIL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MOBILE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="PIN_CODE" Type="varchar" MaxLength="100" />
+          <Property Name="AGENT_CODE" Type="varchar" MaxLength="100" />
+          <Property Name="USER_ID" Type="bigint" />
+          <Property Name="CITY_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="USER_MASTER">
+          <Key>
+            <PropertyRef Name="USER_ID " />
+          </Key>
+          <Property Name="USER_ID " Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="ROLE_ABBR" Type="varchar" MaxLength="20" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="IS_ACTIVE" Type="int" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__CITY_MAST__STATE__33D4B598">
+          <End Role="STATE_MASTER" Type="Self.STATE_MASTER" Multiplicity="0..1" />
+          <End Role="CITY_MASTER" Type="Self.CITY_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE_MASTER">
+              <PropertyRef Name="STATE_ID" />
+            </Principal>
+            <Dependent Role="CITY_MASTER">
+              <PropertyRef Name="STATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENT_MA__CITY___3D5E1FD2">
+          <End Role="CITY_MASTER" Type="Self.CITY_MASTER" Multiplicity="0..1" />
+          <End Role="CLIENT_MASTER" Type="Self.CLIENT_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITY_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Principal>
+            <Dependent Role="CLIENT_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENT_MA__USER___3C69FB99">
+          <End Role="USER_MASTER" Type="Self.USER_MASTER" Multiplicity="0..1" />
+          <End Role="CLIENT_MASTER" Type="Self.CLIENT_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_MASTER">
+              <PropertyRef Name="USER_ID " />
+            </Principal>
+            <Dependent Role="CLIENT_MASTER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__CLIEN__403A8C7D">
+          <End Role="CLIENT_MASTER" Type="Self.CLIENT_MASTER" Multiplicity="0..1" />
+          <End Role="CLIENTASSURANCE_MASTER" Type="Self.CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_MASTER">
+              <PropertyRef Name="CLIENT_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__MODE___4316F928">
+          <End Role="MODE_MASTER" Type="Self.MODE_MASTER" Multiplicity="0..1" />
+          <End Role="CLIENTASSURANCE_MASTER" Type="Self.CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODE_MASTER">
+              <PropertyRef Name="MODE_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="MODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__PLAN___412EB0B6">
+          <End Role="PLAN_MASTER" Type="Self.PLAN_MASTER" Multiplicity="0..1" />
+          <End Role="CLIENTASSURANCE_MASTER" Type="Self.CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLAN_MASTER">
+              <PropertyRef Name="PLAN_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="PLAN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__TERM___4222D4EF">
+          <End Role="TERM_MASTER" Type="Self.TERM_MASTER" Multiplicity="0..1" />
+          <End Role="CLIENTASSURANCE_MASTER" Type="Self.CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TERM_MASTER">
+              <PropertyRef Name="TERM_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="TERM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STATE_MAS__COUNT__34C8D9D1">
+          <End Role="COUNTRY_MASTER" Type="Self.COUNTRY_MASTER" Multiplicity="0..1" />
+          <End Role="STATE_MASTER" Type="Self.STATE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY_MASTER">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Principal>
+            <Dependent Role="STATE_MASTER">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USER_DETA__CITY___35BCFE0A">
+          <End Role="CITY_MASTER" Type="Self.CITY_MASTER" Multiplicity="0..1" />
+          <End Role="USER_DETAIL_MASTER" Type="Self.USER_DETAIL_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITY_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Principal>
+            <Dependent Role="USER_DETAIL_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USER_DETA__USER___36B12243">
+          <End Role="USER_MASTER" Type="Self.USER_MASTER" Multiplicity="0..1" />
+          <End Role="USER_DETAIL_MASTER" Type="Self.USER_DETAIL_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_MASTER">
+              <PropertyRef Name="USER_ID " />
+            </Principal>
+            <Dependent Role="USER_DETAIL_MASTER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spCreateClientAssuranceMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PREMIUM" Type="float" Mode="In" />
+          <Parameter Name="POLICY_NUMBER" Type="varchar" Mode="In" />
+          <Parameter Name="SUM_OF_ASSURANCE" Type="float" Mode="In" />
+          <Parameter Name="PLAN_ID" Type="int" Mode="In" />
+          <Parameter Name="MODE_ID" Type="int" Mode="In" />
+          <Parameter Name="TERM_ID" Type="int" Mode="In" />
+          <Parameter Name="DATE_OF_MATURITY" Type="datetime" Mode="In" />
+          <Parameter Name="NEXT_PREMIUM_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="NOMINEE" Type="varchar(max)" Mode="In" />
+          <Parameter Name="CLIENT_ID" Type="int" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+          <Parameter Name="IS_DELETE" Type="bit" Mode="In" />
+          <Parameter Name="CREATED_BY" Type="int" Mode="In" />
+          <Parameter Name="CREATED_ON" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spCreateClientMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FIRST_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="LAST_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="MIDDLE_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="DOB" Type="datetime" Mode="In" />
+          <Parameter Name="AGE" Type="int" Mode="In" />
+          <Parameter Name="MOBILE" Type="varchar" Mode="In" />
+          <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+          <Parameter Name="DOS" Type="datetime" Mode="In" />
+          <Parameter Name="WEIGHT" Type="float" Mode="In" />
+          <Parameter Name="HEIGHT" Type="float" Mode="In" />
+          <Parameter Name="IDENTITY_OF_BODY" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESS" Type="varchar(max)" Mode="In" />
+          <Parameter Name="PIN_CODE" Type="varchar" Mode="In" />
+          <Parameter Name="CITY_ID" Type="int" Mode="In" />
+          <Parameter Name="USER_ID" Type="bigint" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+          <Parameter Name="IS_DELETE" Type="bit" Mode="In" />
+          <Parameter Name="CREATED_BY" Type="int" Mode="In" />
+          <Parameter Name="CREATED_ON" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spGetClientAssuranceMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CLIENTASSURANCE_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetClientMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CLIENT_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spUpdateClientAssuranceMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CLIENTASSURANCE_ID" Type="int" Mode="In" />
+          <Parameter Name="PREMIUM" Type="float" Mode="In" />
+          <Parameter Name="POLICY_NUMBER" Type="varchar" Mode="In" />
+          <Parameter Name="SUM_OF_ASSURANCE" Type="float" Mode="In" />
+          <Parameter Name="PLAN_ID" Type="int" Mode="In" />
+          <Parameter Name="MODE_ID" Type="int" Mode="In" />
+          <Parameter Name="TERM_ID" Type="int" Mode="In" />
+          <Parameter Name="DATE_OF_MATURITY" Type="datetime" Mode="In" />
+          <Parameter Name="NEXT_PREMIUM_DATE" Type="datetime" Mode="In" />
+          <Parameter Name="NOMINEE" Type="varchar(max)" Mode="In" />
+          <Parameter Name="CLIENT_ID" Type="int" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+          <Parameter Name="IS_DELETE" Type="bit" Mode="In" />
+          <Parameter Name="UPDATED_BY" Type="int" Mode="In" />
+          <Parameter Name="UPDATE_ON" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="spUpdateClientMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CLIENT_ID" Type="int" Mode="In" />
+          <Parameter Name="FIRST_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="LAST_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="MIDDLE_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="DOB" Type="datetime" Mode="In" />
+          <Parameter Name="AGE" Type="int" Mode="In" />
+          <Parameter Name="MOBILE" Type="varchar" Mode="In" />
+          <Parameter Name="EMAIL" Type="varchar" Mode="In" />
+          <Parameter Name="DOS" Type="datetime" Mode="In" />
+          <Parameter Name="WEIGHT" Type="float" Mode="In" />
+          <Parameter Name="HEIGHT" Type="float" Mode="In" />
+          <Parameter Name="IDENTITY_OF_BODY" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESS" Type="varchar(max)" Mode="In" />
+          <Parameter Name="PIN_CODE" Type="varchar" Mode="In" />
+          <Parameter Name="CITY_ID" Type="int" Mode="In" />
+          <Parameter Name="USER_ID" Type="bigint" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="bit" Mode="In" />
+          <Parameter Name="IS_DELETE" Type="bit" Mode="In" />
+          <Parameter Name="UPDATED_BY" Type="int" Mode="In" />
+          <Parameter Name="UPDATE_ON" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="liccmsdbModelStoreContainer">
+          <EntitySet Name="CITY_MASTER" EntityType="Self.CITY_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENT_MASTER" EntityType="Self.CLIENT_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTASSURANCE_MASTER" EntityType="Self.CLIENTASSURANCE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COUNTRY_MASTER" EntityType="Self.COUNTRY_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODE_MASTER" EntityType="Self.MODE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLAN_MASTER" EntityType="Self.PLAN_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE_MASTER" EntityType="Self.ROLE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATE_MASTER" EntityType="Self.STATE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TERM_MASTER" EntityType="Self.TERM_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_DETAIL_MASTER" EntityType="Self.USER_DETAIL_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_MASTER" EntityType="Self.USER_MASTER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CITY_MAST__STATE__33D4B598" Association="Self.FK__CITY_MAST__STATE__33D4B598">
+            <End Role="STATE_MASTER" EntitySet="STATE_MASTER" />
+            <End Role="CITY_MASTER" EntitySet="CITY_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENT_MA__CITY___3D5E1FD2" Association="Self.FK__CLIENT_MA__CITY___3D5E1FD2">
+            <End Role="CITY_MASTER" EntitySet="CITY_MASTER" />
+            <End Role="CLIENT_MASTER" EntitySet="CLIENT_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENT_MA__USER___3C69FB99" Association="Self.FK__CLIENT_MA__USER___3C69FB99">
+            <End Role="USER_MASTER" EntitySet="USER_MASTER" />
+            <End Role="CLIENT_MASTER" EntitySet="CLIENT_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__CLIEN__403A8C7D" Association="Self.FK__CLIENTASS__CLIEN__403A8C7D">
+            <End Role="CLIENT_MASTER" EntitySet="CLIENT_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__MODE___4316F928" Association="Self.FK__CLIENTASS__MODE___4316F928">
+            <End Role="MODE_MASTER" EntitySet="MODE_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__PLAN___412EB0B6" Association="Self.FK__CLIENTASS__PLAN___412EB0B6">
+            <End Role="PLAN_MASTER" EntitySet="PLAN_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__TERM___4222D4EF" Association="Self.FK__CLIENTASS__TERM___4222D4EF">
+            <End Role="TERM_MASTER" EntitySet="TERM_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STATE_MAS__COUNT__34C8D9D1" Association="Self.FK__STATE_MAS__COUNT__34C8D9D1">
+            <End Role="COUNTRY_MASTER" EntitySet="COUNTRY_MASTER" />
+            <End Role="STATE_MASTER" EntitySet="STATE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USER_DETA__CITY___35BCFE0A" Association="Self.FK__USER_DETA__CITY___35BCFE0A">
+            <End Role="CITY_MASTER" EntitySet="CITY_MASTER" />
+            <End Role="USER_DETAIL_MASTER" EntitySet="USER_DETAIL_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USER_DETA__USER___36B12243" Association="Self.FK__USER_DETA__USER___36B12243">
+            <End Role="USER_MASTER" EntitySet="USER_MASTER" />
+            <End Role="USER_DETAIL_MASTER" EntitySet="USER_DETAIL_MASTER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="liccmsdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="liccmsdbEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spCreateClientAssuranceMaster">
+            <Parameter Name="PREMIUM" Mode="In" Type="Double" />
+            <Parameter Name="POLICY_NUMBER" Mode="In" Type="String" />
+            <Parameter Name="SUM_OF_ASSURANCE" Mode="In" Type="Double" />
+            <Parameter Name="PLAN_ID" Mode="In" Type="Int32" />
+            <Parameter Name="MODE_ID" Mode="In" Type="Int32" />
+            <Parameter Name="TERM_ID" Mode="In" Type="Int32" />
+            <Parameter Name="DATE_OF_MATURITY" Mode="In" Type="DateTime" />
+            <Parameter Name="NEXT_PREMIUM_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="NOMINEE" Mode="In" Type="String" />
+            <Parameter Name="CLIENT_ID" Mode="In" Type="Int32" />
+            <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+            <Parameter Name="IS_DELETE" Mode="In" Type="Boolean" />
+            <Parameter Name="CREATED_BY" Mode="In" Type="Int32" />
+            <Parameter Name="CREATED_ON" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spCreateClientMaster">
+            <Parameter Name="FIRST_NAME" Mode="In" Type="String" />
+            <Parameter Name="LAST_NAME" Mode="In" Type="String" />
+            <Parameter Name="MIDDLE_NAME" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="AGE" Mode="In" Type="Int32" />
+            <Parameter Name="MOBILE" Mode="In" Type="String" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+            <Parameter Name="DOS" Mode="In" Type="DateTime" />
+            <Parameter Name="WEIGHT" Mode="In" Type="Double" />
+            <Parameter Name="HEIGHT" Mode="In" Type="Double" />
+            <Parameter Name="IDENTITY_OF_BODY" Mode="In" Type="String" />
+            <Parameter Name="ADDRESS" Mode="In" Type="String" />
+            <Parameter Name="PIN_CODE" Mode="In" Type="String" />
+            <Parameter Name="CITY_ID" Mode="In" Type="Int32" />
+            <Parameter Name="USER_ID" Mode="In" Type="Int64" />
+            <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+            <Parameter Name="IS_DELETE" Mode="In" Type="Boolean" />
+            <Parameter Name="CREATED_BY" Mode="In" Type="Int32" />
+            <Parameter Name="CREATED_ON" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spGetClientAssuranceMaster" ReturnType="Collection(liccmsdbModel.spGetClientAssuranceMaster_Result)">
+          <Parameter Name="CLIENTASSURANCE_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateClientAssuranceMaster">
+            <Parameter Name="CLIENTASSURANCE_ID" Mode="In" Type="Int32" />
+            <Parameter Name="PREMIUM" Mode="In" Type="Double" />
+            <Parameter Name="POLICY_NUMBER" Mode="In" Type="String" />
+            <Parameter Name="SUM_OF_ASSURANCE" Mode="In" Type="Double" />
+            <Parameter Name="PLAN_ID" Mode="In" Type="Int32" />
+            <Parameter Name="MODE_ID" Mode="In" Type="Int32" />
+            <Parameter Name="TERM_ID" Mode="In" Type="Int32" />
+            <Parameter Name="DATE_OF_MATURITY" Mode="In" Type="DateTime" />
+            <Parameter Name="NEXT_PREMIUM_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="NOMINEE" Mode="In" Type="String" />
+            <Parameter Name="CLIENT_ID" Mode="In" Type="Int32" />
+            <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+            <Parameter Name="IS_DELETE" Mode="In" Type="Boolean" />
+            <Parameter Name="UPDATED_BY" Mode="In" Type="Int32" />
+            <Parameter Name="UPDATE_ON" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateClientMaster">
+            <Parameter Name="CLIENT_ID" Mode="In" Type="Int32" />
+            <Parameter Name="FIRST_NAME" Mode="In" Type="String" />
+            <Parameter Name="LAST_NAME" Mode="In" Type="String" />
+            <Parameter Name="MIDDLE_NAME" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="AGE" Mode="In" Type="Int32" />
+            <Parameter Name="MOBILE" Mode="In" Type="String" />
+            <Parameter Name="EMAIL" Mode="In" Type="String" />
+            <Parameter Name="DOS" Mode="In" Type="DateTime" />
+            <Parameter Name="WEIGHT" Mode="In" Type="Double" />
+            <Parameter Name="HEIGHT" Mode="In" Type="Double" />
+            <Parameter Name="IDENTITY_OF_BODY" Mode="In" Type="String" />
+            <Parameter Name="ADDRESS" Mode="In" Type="String" />
+            <Parameter Name="PIN_CODE" Mode="In" Type="String" />
+            <Parameter Name="CITY_ID" Mode="In" Type="Int32" />
+            <Parameter Name="USER_ID" Mode="In" Type="Int64" />
+            <Parameter Name="IS_ACTIVE" Mode="In" Type="Boolean" />
+            <Parameter Name="IS_DELETE" Mode="In" Type="Boolean" />
+            <Parameter Name="UPDATED_BY" Mode="In" Type="Int32" />
+            <Parameter Name="UPDATE_ON" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="CITY_MASTER" EntityType="liccmsdbModel.CITY_MASTER" />
+          <EntitySet Name="CLIENT_MASTER" EntityType="liccmsdbModel.CLIENT_MASTER" />
+          <EntitySet Name="CLIENTASSURANCE_MASTER" EntityType="liccmsdbModel.CLIENTASSURANCE_MASTER" />
+          <EntitySet Name="COUNTRY_MASTER" EntityType="liccmsdbModel.COUNTRY_MASTER" />
+          <EntitySet Name="MODE_MASTER" EntityType="liccmsdbModel.MODE_MASTER" />
+          <EntitySet Name="PLAN_MASTER" EntityType="liccmsdbModel.PLAN_MASTER" />
+          <EntitySet Name="ROLE_MASTER" EntityType="liccmsdbModel.ROLE_MASTER" />
+          <EntitySet Name="STATE_MASTER" EntityType="liccmsdbModel.STATE_MASTER" />
+          <EntitySet Name="TERM_MASTER" EntityType="liccmsdbModel.TERM_MASTER" />
+          <EntitySet Name="USER_DETAIL_MASTER" EntityType="liccmsdbModel.USER_DETAIL_MASTER" />
+          <EntitySet Name="USER_MASTER" EntityType="liccmsdbModel.USER_MASTER" />
+          <AssociationSet Name="FK__CITY_MAST__STATE__33D4B598" Association="liccmsdbModel.FK__CITY_MAST__STATE__33D4B598">
+            <End Role="STATE_MASTER" EntitySet="STATE_MASTER" />
+            <End Role="CITY_MASTER" EntitySet="CITY_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENT_MA__CITY___3D5E1FD2" Association="liccmsdbModel.FK__CLIENT_MA__CITY___3D5E1FD2">
+            <End Role="CITY_MASTER" EntitySet="CITY_MASTER" />
+            <End Role="CLIENT_MASTER" EntitySet="CLIENT_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USER_DETA__CITY___35BCFE0A" Association="liccmsdbModel.FK__USER_DETA__CITY___35BCFE0A">
+            <End Role="CITY_MASTER" EntitySet="CITY_MASTER" />
+            <End Role="USER_DETAIL_MASTER" EntitySet="USER_DETAIL_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENT_MA__USER___3C69FB99" Association="liccmsdbModel.FK__CLIENT_MA__USER___3C69FB99">
+            <End Role="USER_MASTER" EntitySet="USER_MASTER" />
+            <End Role="CLIENT_MASTER" EntitySet="CLIENT_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__CLIEN__403A8C7D" Association="liccmsdbModel.FK__CLIENTASS__CLIEN__403A8C7D">
+            <End Role="CLIENT_MASTER" EntitySet="CLIENT_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__MODE___4316F928" Association="liccmsdbModel.FK__CLIENTASS__MODE___4316F928">
+            <End Role="MODE_MASTER" EntitySet="MODE_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__PLAN___412EB0B6" Association="liccmsdbModel.FK__CLIENTASS__PLAN___412EB0B6">
+            <End Role="PLAN_MASTER" EntitySet="PLAN_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLIENTASS__TERM___4222D4EF" Association="liccmsdbModel.FK__CLIENTASS__TERM___4222D4EF">
+            <End Role="TERM_MASTER" EntitySet="TERM_MASTER" />
+            <End Role="CLIENTASSURANCE_MASTER" EntitySet="CLIENTASSURANCE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STATE_MAS__COUNT__34C8D9D1" Association="liccmsdbModel.FK__STATE_MAS__COUNT__34C8D9D1">
+            <End Role="COUNTRY_MASTER" EntitySet="COUNTRY_MASTER" />
+            <End Role="STATE_MASTER" EntitySet="STATE_MASTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USER_DETA__USER___36B12243" Association="liccmsdbModel.FK__USER_DETA__USER___36B12243">
+            <End Role="USER_MASTER" EntitySet="USER_MASTER" />
+            <End Role="USER_DETAIL_MASTER" EntitySet="USER_DETAIL_MASTER" />
+          </AssociationSet>
+          <FunctionImport Name="spGetClientMaster" ReturnType="Collection(liccmsdbModel.spGetClientMaster_Result5)">
+            <Parameter Name="CLIENT_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spGetClientAssuranceMaster_Result">
+          <Property Type="Int32" Name="CLIENTASSURANCE_ID" Nullable="false" />
+          <Property Type="Double" Name="PREMIUM" Nullable="true" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="SUM_OF_ASSURANCE" Nullable="true" />
+          <Property Type="Int32" Name="PLAN_ID" Nullable="true" />
+          <Property Type="Int32" Name="MODE_ID" Nullable="true" />
+          <Property Type="Int32" Name="TERM_ID" Nullable="true" />
+          <Property Type="DateTime" Name="DATE_OF_MATURITY" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NEXT_PREMIUM_DATE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NOMINEE" Nullable="true" />
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="true" />
+          <Property Type="Boolean" Name="IS_DELETE" Nullable="true" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UPDATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="UPDATE_ON" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetClientMaster_Result">
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AGE" Nullable="true" />
+          <Property Type="String" Name="MOBILE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="DOS" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="WEIGHT" Nullable="true" />
+          <Property Type="Double" Name="HEIGHT" Nullable="true" />
+          <Property Type="String" Name="IDENTITY_OF_BODY" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="PIN_CODE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int64" Name="USER_ID" Nullable="true" />
+          <Property Type="Boolean" Name="IS_ACTIVE" Nullable="true" />
+          <Property Type="Boolean" Name="IS_DELETE" Nullable="true" />
+          <Property Type="Int32" Name="CREATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="UPDATED_BY" Nullable="true" />
+          <Property Type="DateTime" Name="UPDATE_ON" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="CITY_MASTER">
+          <Key>
+            <PropertyRef Name="CITY_ID" />
+          </Key>
+          <Property Name="CITY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CITY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STATE_ID" Type="Int32" />
+          <NavigationProperty Name="STATE_MASTER" Relationship="liccmsdbModel.FK__CITY_MAST__STATE__33D4B598" FromRole="CITY_MASTER" ToRole="STATE_MASTER" />
+          <NavigationProperty Name="CLIENT_MASTER" Relationship="liccmsdbModel.FK__CLIENT_MA__CITY___3D5E1FD2" FromRole="CITY_MASTER" ToRole="CLIENT_MASTER" />
+          <NavigationProperty Name="USER_DETAIL_MASTER" Relationship="liccmsdbModel.FK__USER_DETA__CITY___35BCFE0A" FromRole="CITY_MASTER" ToRole="USER_DETAIL_MASTER" />
+        </EntityType>
+        <EntityType Name="CLIENT_MASTER">
+          <Key>
+            <PropertyRef Name="CLIENT_ID" />
+          </Key>
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MIDDLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="AGE" Type="Int32" />
+          <Property Name="MOBILE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DOS" Type="DateTime" Precision="3" />
+          <Property Name="WEIGHT" Type="Double" />
+          <Property Name="HEIGHT" Type="Double" />
+          <Property Name="IDENTITY_OF_BODY" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PIN_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CITY_ID" Type="Int32" />
+          <Property Name="USER_ID" Type="Int64" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
+          <Property Name="IS_DELETE" Type="Boolean" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="UPDATE_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CITY_MASTER" Relationship="liccmsdbModel.FK__CLIENT_MA__CITY___3D5E1FD2" FromRole="CLIENT_MASTER" ToRole="CITY_MASTER" />
+          <NavigationProperty Name="USER_MASTER" Relationship="liccmsdbModel.FK__CLIENT_MA__USER___3C69FB99" FromRole="CLIENT_MASTER" ToRole="USER_MASTER" />
+          <NavigationProperty Name="CLIENTASSURANCE_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__CLIEN__403A8C7D" FromRole="CLIENT_MASTER" ToRole="CLIENTASSURANCE_MASTER" />
+        </EntityType>
+        <EntityType Name="CLIENTASSURANCE_MASTER">
+          <Key>
+            <PropertyRef Name="CLIENTASSURANCE_ID" />
+          </Key>
+          <Property Name="CLIENTASSURANCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PREMIUM" Type="Double" />
+          <Property Name="POLICY_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SUM_OF_ASSURANCE" Type="Double" />
+          <Property Name="PLAN_ID" Type="Int32" />
+          <Property Name="MODE_ID" Type="Int32" />
+          <Property Name="TERM_ID" Type="Int32" />
+          <Property Name="DATE_OF_MATURITY" Type="DateTime" Precision="3" />
+          <Property Name="NEXT_PREMIUM_DATE" Type="DateTime" Precision="3" />
+          <Property Name="NOMINEE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CLIENT_ID" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
+          <Property Name="IS_DELETE" Type="Boolean" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="UPDATE_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CLIENT_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__CLIEN__403A8C7D" FromRole="CLIENTASSURANCE_MASTER" ToRole="CLIENT_MASTER" />
+          <NavigationProperty Name="MODE_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__MODE___4316F928" FromRole="CLIENTASSURANCE_MASTER" ToRole="MODE_MASTER" />
+          <NavigationProperty Name="PLAN_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__PLAN___412EB0B6" FromRole="CLIENTASSURANCE_MASTER" ToRole="PLAN_MASTER" />
+          <NavigationProperty Name="TERM_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__TERM___4222D4EF" FromRole="CLIENTASSURANCE_MASTER" ToRole="TERM_MASTER" />
+        </EntityType>
+        <EntityType Name="COUNTRY_MASTER">
+          <Key>
+            <PropertyRef Name="COUNTRY_ID" />
+          </Key>
+          <Property Name="COUNTRY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COUNTRY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="STATE_MASTER" Relationship="liccmsdbModel.FK__STATE_MAS__COUNT__34C8D9D1" FromRole="COUNTRY_MASTER" ToRole="STATE_MASTER" />
+        </EntityType>
+        <EntityType Name="MODE_MASTER">
+          <Key>
+            <PropertyRef Name="MODE_ID" />
+          </Key>
+          <Property Name="MODE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Int32" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <NavigationProperty Name="CLIENTASSURANCE_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__MODE___4316F928" FromRole="MODE_MASTER" ToRole="CLIENTASSURANCE_MASTER" />
+        </EntityType>
+        <EntityType Name="PLAN_MASTER">
+          <Key>
+            <PropertyRef Name="PLAN_ID" />
+          </Key>
+          <Property Name="PLAN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLAN_CODE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PLAN_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Int32" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <NavigationProperty Name="CLIENTASSURANCE_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__PLAN___412EB0B6" FromRole="PLAN_MASTER" ToRole="CLIENTASSURANCE_MASTER" />
+        </EntityType>
+        <EntityType Name="ROLE_MASTER">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ABBR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="STATE_MASTER">
+          <Key>
+            <PropertyRef Name="STATE_ID" />
+          </Key>
+          <Property Name="STATE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY_ID" Type="Int32" />
+          <NavigationProperty Name="CITY_MASTER" Relationship="liccmsdbModel.FK__CITY_MAST__STATE__33D4B598" FromRole="STATE_MASTER" ToRole="CITY_MASTER" />
+          <NavigationProperty Name="COUNTRY_MASTER" Relationship="liccmsdbModel.FK__STATE_MAS__COUNT__34C8D9D1" FromRole="STATE_MASTER" ToRole="COUNTRY_MASTER" />
+        </EntityType>
+        <EntityType Name="TERM_MASTER">
+          <Key>
+            <PropertyRef Name="TERM_ID" />
+          </Key>
+          <Property Name="TERM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TERM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Int32" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <NavigationProperty Name="CLIENTASSURANCE_MASTER" Relationship="liccmsdbModel.FK__CLIENTASS__TERM___4222D4EF" FromRole="TERM_MASTER" ToRole="CLIENTASSURANCE_MASTER" />
+        </EntityType>
+        <EntityType Name="USER_DETAIL_MASTER">
+          <Key>
+            <PropertyRef Name="USER_DETAIL_ID" />
+          </Key>
+          <Property Name="USER_DETAIL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MIDDLE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="PIN_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AGENT_CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="USER_ID" Type="Int64" />
+          <Property Name="CITY_ID" Type="Int32" />
+          <NavigationProperty Name="CITY_MASTER" Relationship="liccmsdbModel.FK__USER_DETA__CITY___35BCFE0A" FromRole="USER_DETAIL_MASTER" ToRole="CITY_MASTER" />
+          <NavigationProperty Name="USER_MASTER" Relationship="liccmsdbModel.FK__USER_DETA__USER___36B12243" FromRole="USER_DETAIL_MASTER" ToRole="USER_MASTER" />
+        </EntityType>
+        <EntityType Name="USER_MASTER">
+          <Key>
+            <PropertyRef Name="USER_ID_" />
+          </Key>
+          <Property Name="USER_ID_" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="ROLE_ABBR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="IS_ACTIVE" Type="Int32" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CLIENT_MASTER" Relationship="liccmsdbModel.FK__CLIENT_MA__USER___3C69FB99" FromRole="USER_MASTER" ToRole="CLIENT_MASTER" />
+          <NavigationProperty Name="USER_DETAIL_MASTER" Relationship="liccmsdbModel.FK__USER_DETA__USER___36B12243" FromRole="USER_MASTER" ToRole="USER_DETAIL_MASTER" />
+        </EntityType>
+        <Association Name="FK__CITY_MAST__STATE__33D4B598">
+          <End Type="liccmsdbModel.STATE_MASTER" Role="STATE_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CITY_MASTER" Role="CITY_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATE_MASTER">
+              <PropertyRef Name="STATE_ID" />
+            </Principal>
+            <Dependent Role="CITY_MASTER">
+              <PropertyRef Name="STATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENT_MA__CITY___3D5E1FD2">
+          <End Type="liccmsdbModel.CITY_MASTER" Role="CITY_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CLIENT_MASTER" Role="CLIENT_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITY_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Principal>
+            <Dependent Role="CLIENT_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USER_DETA__CITY___35BCFE0A">
+          <End Type="liccmsdbModel.CITY_MASTER" Role="CITY_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.USER_DETAIL_MASTER" Role="USER_DETAIL_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITY_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Principal>
+            <Dependent Role="USER_DETAIL_MASTER">
+              <PropertyRef Name="CITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENT_MA__USER___3C69FB99">
+          <End Type="liccmsdbModel.USER_MASTER" Role="USER_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CLIENT_MASTER" Role="CLIENT_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_MASTER">
+              <PropertyRef Name="USER_ID_" />
+            </Principal>
+            <Dependent Role="CLIENT_MASTER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__CLIEN__403A8C7D">
+          <End Type="liccmsdbModel.CLIENT_MASTER" Role="CLIENT_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CLIENTASSURANCE_MASTER" Role="CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_MASTER">
+              <PropertyRef Name="CLIENT_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="CLIENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__MODE___4316F928">
+          <End Type="liccmsdbModel.MODE_MASTER" Role="MODE_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CLIENTASSURANCE_MASTER" Role="CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODE_MASTER">
+              <PropertyRef Name="MODE_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="MODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__PLAN___412EB0B6">
+          <End Type="liccmsdbModel.PLAN_MASTER" Role="PLAN_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CLIENTASSURANCE_MASTER" Role="CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLAN_MASTER">
+              <PropertyRef Name="PLAN_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="PLAN_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLIENTASS__TERM___4222D4EF">
+          <End Type="liccmsdbModel.TERM_MASTER" Role="TERM_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.CLIENTASSURANCE_MASTER" Role="CLIENTASSURANCE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TERM_MASTER">
+              <PropertyRef Name="TERM_ID" />
+            </Principal>
+            <Dependent Role="CLIENTASSURANCE_MASTER">
+              <PropertyRef Name="TERM_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STATE_MAS__COUNT__34C8D9D1">
+          <End Type="liccmsdbModel.COUNTRY_MASTER" Role="COUNTRY_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.STATE_MASTER" Role="STATE_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY_MASTER">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Principal>
+            <Dependent Role="STATE_MASTER">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USER_DETA__USER___36B12243">
+          <End Type="liccmsdbModel.USER_MASTER" Role="USER_MASTER" Multiplicity="0..1" />
+          <End Type="liccmsdbModel.USER_DETAIL_MASTER" Role="USER_DETAIL_MASTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER_MASTER">
+              <PropertyRef Name="USER_ID_" />
+            </Principal>
+            <Dependent Role="USER_DETAIL_MASTER">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spGetClientMaster_Result1">
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NEXT_PREMIUM_DATE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PREMIUM" Nullable="true" />
+          <Property Type="Double" Name="SUM_OF_ASSURANCE" Nullable="true" />
+          <Property Type="DateTime" Name="DATE_OF_MATURITY" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetClientMaster_Result2">
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AGE" Nullable="true" />
+          <Property Type="String" Name="MOBILE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="DOS" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="WEIGHT" Nullable="true" />
+          <Property Type="Double" Name="HEIGHT" Nullable="true" />
+          <Property Type="String" Name="IDENTITY_OF_BODY" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="PIN_CODE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int64" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLIENTASSURANCE_ID" Nullable="false" />
+          <Property Type="Double" Name="PREMIUM" Nullable="true" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="PLAN_ID" Nullable="true" />
+          <Property Type="Int32" Name="MODE_ID" Nullable="true" />
+          <Property Type="Int32" Name="TERM_ID" Nullable="true" />
+          <Property Type="DateTime" Name="DATE_OF_MATURITY" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NEXT_PREMIUM_DATE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NOMINEE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetClientMaster_Result3">
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AGE" Nullable="true" />
+          <Property Type="String" Name="MOBILE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="DOS" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="WEIGHT" Nullable="true" />
+          <Property Type="Double" Name="HEIGHT" Nullable="true" />
+          <Property Type="String" Name="IDENTITY_OF_BODY" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="PIN_CODE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int64" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLIENTASSURANCE_ID" Nullable="false" />
+          <Property Type="Double" Name="PREMIUM" Nullable="true" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="PLAN_ID" Nullable="true" />
+          <Property Type="Int32" Name="MODE_ID" Nullable="true" />
+          <Property Type="Int32" Name="TERM_ID" Nullable="true" />
+          <Property Type="DateTime" Name="DATE_OF_MATURITY" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NEXT_PREMIUM_DATE" Nullable="true" Precision="23" />
+          <Property Type="String" Name="NOMINEE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetClientMaster_Result4">
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AGE" Nullable="true" />
+          <Property Type="String" Name="MOBILE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="DOS" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="WEIGHT" Nullable="true" />
+          <Property Type="Double" Name="HEIGHT" Nullable="true" />
+          <Property Type="String" Name="IDENTITY_OF_BODY" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="PIN_CODE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int64" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLIENTASSURANCE_ID" Nullable="false" />
+          <Property Type="Double" Name="PREMIUM" Nullable="true" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="PLAN_ID" Nullable="true" />
+          <Property Type="Int32" Name="MODE_ID" Nullable="true" />
+          <Property Type="Int32" Name="TERM_ID" Nullable="true" />
+          <Property Type="DateTime" Name="DATE_OF_MATURITY" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NEXT_PREMIUM_DATE" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="SUM_OF_ASSURANCE" Nullable="true" />
+          <Property Type="String" Name="NOMINEE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetClientMaster_Result5">
+          <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+          <Property Type="String" Name="FIRST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LAST_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MIDDLE_NAME" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DOB" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AGE" Nullable="true" />
+          <Property Type="String" Name="MOBILE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="DOS" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="WEIGHT" Nullable="true" />
+          <Property Type="Double" Name="HEIGHT" Nullable="true" />
+          <Property Type="String" Name="IDENTITY_OF_BODY" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADDRESS" Nullable="true" />
+          <Property Type="String" Name="PIN_CODE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="CITY_ID" Nullable="true" />
+          <Property Type="Int64" Name="USER_ID" Nullable="true" />
+          <Property Type="Int32" Name="CLIENTASSURANCE_ID" Nullable="false" />
+          <Property Type="Double" Name="PREMIUM" Nullable="true" />
+          <Property Type="String" Name="POLICY_NUMBER" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="PLAN_ID" Nullable="true" />
+          <Property Type="Int32" Name="MODE_ID" Nullable="true" />
+          <Property Type="Int32" Name="TERM_ID" Nullable="true" />
+          <Property Type="DateTime" Name="DATE_OF_MATURITY" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NEXT_PREMIUM_DATE" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="SUM_OF_ASSURANCE" Nullable="true" />
+          <Property Type="String" Name="NOMINEE" Nullable="true" />
+          <Property Type="Int32" Name="STATE_ID" Nullable="true" />
+          <Property Type="Int32" Name="COUNTRY_ID" Nullable="true" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="liccmsdbModelStoreContainer" CdmEntityContainer="liccmsdbEntities">
+          <FunctionImportMapping FunctionImportName="spCreateClientAssuranceMaster" FunctionName="liccmsdbModel.Store.spCreateClientAssuranceMaster" />
+          <FunctionImportMapping FunctionImportName="spCreateClientMaster" FunctionName="liccmsdbModel.Store.spCreateClientMaster" />
+          <FunctionImportMapping FunctionImportName="spGetClientAssuranceMaster" FunctionName="liccmsdbModel.Store.spGetClientAssuranceMaster">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="liccmsdbModel.spGetClientAssuranceMaster_Result">
+                <ScalarProperty Name="CLIENTASSURANCE_ID" ColumnName="CLIENTASSURANCE_ID" />
+                <ScalarProperty Name="PREMIUM" ColumnName="PREMIUM" />
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+                <ScalarProperty Name="SUM_OF_ASSURANCE" ColumnName="SUM_OF_ASSURANCE" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+                <ScalarProperty Name="MODE_ID" ColumnName="MODE_ID" />
+                <ScalarProperty Name="TERM_ID" ColumnName="TERM_ID" />
+                <ScalarProperty Name="DATE_OF_MATURITY" ColumnName="DATE_OF_MATURITY" />
+                <ScalarProperty Name="NEXT_PREMIUM_DATE" ColumnName="NEXT_PREMIUM_DATE" />
+                <ScalarProperty Name="NOMINEE" ColumnName="NOMINEE" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATE_ON" ColumnName="UPDATE_ON" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spUpdateClientAssuranceMaster" FunctionName="liccmsdbModel.Store.spUpdateClientAssuranceMaster" />
+          <FunctionImportMapping FunctionImportName="spUpdateClientMaster" FunctionName="liccmsdbModel.Store.spUpdateClientMaster" />
+          <EntitySetMapping Name="CITY_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.CITY_MASTER">
+              <MappingFragment StoreEntitySet="CITY_MASTER">
+                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+                <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENT_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.CLIENT_MASTER">
+              <MappingFragment StoreEntitySet="CLIENT_MASTER">
+                <ScalarProperty Name="UPDATE_ON" ColumnName="UPDATE_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+                <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="IDENTITY_OF_BODY" ColumnName="IDENTITY_OF_BODY" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="DOS" ColumnName="DOS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTASSURANCE_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.CLIENTASSURANCE_MASTER">
+              <MappingFragment StoreEntitySet="CLIENTASSURANCE_MASTER">
+                <ScalarProperty Name="UPDATE_ON" ColumnName="UPDATE_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="NOMINEE" ColumnName="NOMINEE" />
+                <ScalarProperty Name="NEXT_PREMIUM_DATE" ColumnName="NEXT_PREMIUM_DATE" />
+                <ScalarProperty Name="DATE_OF_MATURITY" ColumnName="DATE_OF_MATURITY" />
+                <ScalarProperty Name="TERM_ID" ColumnName="TERM_ID" />
+                <ScalarProperty Name="MODE_ID" ColumnName="MODE_ID" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+                <ScalarProperty Name="SUM_OF_ASSURANCE" ColumnName="SUM_OF_ASSURANCE" />
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+                <ScalarProperty Name="PREMIUM" ColumnName="PREMIUM" />
+                <ScalarProperty Name="CLIENTASSURANCE_ID" ColumnName="CLIENTASSURANCE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COUNTRY_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.COUNTRY_MASTER">
+              <MappingFragment StoreEntitySet="COUNTRY_MASTER">
+                <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODE_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.MODE_MASTER">
+              <MappingFragment StoreEntitySet="MODE_MASTER">
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="MODE_NAME" ColumnName="MODE_NAME" />
+                <ScalarProperty Name="MODE_ID" ColumnName="MODE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLAN_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.PLAN_MASTER">
+              <MappingFragment StoreEntitySet="PLAN_MASTER">
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="PLAN_NAME" ColumnName="PLAN_NAME" />
+                <ScalarProperty Name="PLAN_CODE" ColumnName="PLAN_CODE" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.ROLE_MASTER">
+              <MappingFragment StoreEntitySet="ROLE_MASTER">
+                <ScalarProperty Name="IS_ACTIE" ColumnName="IS_ACTIE" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+                <ScalarProperty Name="ROLE_ABBR" ColumnName="ROLE_ABBR" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATE_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.STATE_MASTER">
+              <MappingFragment StoreEntitySet="STATE_MASTER">
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+                <ScalarProperty Name="STATE_NAME" ColumnName="STATE_NAME" />
+                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TERM_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.TERM_MASTER">
+              <MappingFragment StoreEntitySet="TERM_MASTER">
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="TERM_NAME" ColumnName="TERM_NAME" />
+                <ScalarProperty Name="TERM_ID" ColumnName="TERM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_DETAIL_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.USER_DETAIL_MASTER">
+              <MappingFragment StoreEntitySet="USER_DETAIL_MASTER">
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="AGENT_CODE" ColumnName="AGENT_CODE" />
+                <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="USER_DETAIL_ID" ColumnName="USER_DETAIL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_MASTER">
+            <EntityTypeMapping TypeName="liccmsdbModel.USER_MASTER">
+              <MappingFragment StoreEntitySet="USER_MASTER">
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="ROLE_ABBR" ColumnName="ROLE_ABBR" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID " />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetClientMaster" FunctionName="liccmsdbModel.Store.spGetClientMaster">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="liccmsdbModel.spGetClientMaster_Result5">
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DOS" ColumnName="DOS" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="IDENTITY_OF_BODY" ColumnName="IDENTITY_OF_BODY" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="PIN_CODE" ColumnName="PIN_CODE" />
+                <ScalarProperty Name="CITY_ID" ColumnName="CITY_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="CLIENTASSURANCE_ID" ColumnName="CLIENTASSURANCE_ID" />
+                <ScalarProperty Name="PREMIUM" ColumnName="PREMIUM" />
+                <ScalarProperty Name="POLICY_NUMBER" ColumnName="POLICY_NUMBER" />
+                <ScalarProperty Name="PLAN_ID" ColumnName="PLAN_ID" />
+                <ScalarProperty Name="MODE_ID" ColumnName="MODE_ID" />
+                <ScalarProperty Name="TERM_ID" ColumnName="TERM_ID" />
+                <ScalarProperty Name="DATE_OF_MATURITY" ColumnName="DATE_OF_MATURITY" />
+                <ScalarProperty Name="NEXT_PREMIUM_DATE" ColumnName="NEXT_PREMIUM_DATE" />
+                <ScalarProperty Name="SUM_OF_ASSURANCE" ColumnName="SUM_OF_ASSURANCE" />
+                <ScalarProperty Name="NOMINEE" ColumnName="NOMINEE" />
+                <ScalarProperty Name="STATE_ID" ColumnName="STATE_ID" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
